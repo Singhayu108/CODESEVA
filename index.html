@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODESEVA - Your Partner in Web Design & Development</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; font-family: 'Montserrat', Arial, sans-serif; margin: 0; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem 1.5rem 2rem; background: #fff; border-bottom: 1px solid #eee; }
+        .navbar .logo img { 
+            height: 80px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .navbar .logo img:hover {
+            transform: translateY(-2px);
+        }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: #111; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: #3a3a3a; }
+        .cta-btn { background: #443f43; color: #fff; border: none; border-radius: 1.2rem; padding: 0.7rem 1.7rem; font-weight: 700; font-size: 1.05rem; margin-left: 2rem; cursor: pointer; transition: background 0.2s; }
+        .cta-btn:hover { background: #222; }
+        .hero-section { display: flex; min-height: 90vh; align-items: flex-start; justify-content: space-between; padding: 0 0 0 6vw; position: relative; }
+        .hero-left { flex: 1.2; padding-top: 5vw; z-index: 2; }
+        .hero-title { font-size: 4.2rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 1.2rem 0; text-transform: uppercase; }
+        .hero-title .web-design { display: inline-block; color: #111; border-bottom: 4px solid #b2cbea; font-size: 1.7rem; font-weight: 900; letter-spacing: 0.01em; margin-bottom: 0.2rem; }
+        .hero-title .amp { font-size: 5.2rem; font-weight: 900; display: block; line-height: 0.8; margin: 0.2rem 0; }
+        .hero-title .dev-badge { display: inline-block; background: #b2cbea; color: #111; border-radius: 1.2rem; padding: 0.2em 1.2em 0.2em 1.2em; font-size: 1.2rem; font-weight: 700; margin-left: 0.5rem; vertical-align: middle; }
+        .hero-desc { font-size: 1.1rem; color: #222; margin: 2.5rem 0 0.5rem 0; max-width: 480px; }
+        .scroll-arrow { margin: 2.5rem 0 0 0; display: flex; align-items: center; }
+        .scroll-arrow .arrow-circle { width: 54px; height: 54px; border: 2px solid #111; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .scroll-arrow i { font-size: 2rem; color: #111; }
+        .hero-dot { position: absolute; left: 2vw; top: 7vw; width: 12px; height: 12px; background: #111; border-radius: 50%; }
+        .hero-line { position: absolute; left: 3vw; top: 16vw; width: 2px; height: 80px; background: #111; border-radius: 1px; }
+        .hero-right { flex: 1.1; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start; position: relative; min-width: 420px; }
+        .hero-circles { position: relative; width: 900px; height: 900px; margin-top: 0; }
+        .hero-circles .circle-blue { position: absolute; right: -120px; top: -80px; width: 720px; height: 720px; background: #b2cbea; border-radius: 50%; z-index: 1; }
+        .hero-circles .circle-black { position: absolute; left: 180px; top: 220px; width: 520px; height: 520px; background: #111; border-radius: 50%; z-index: 2; }
+        .hero-circles .watch-video { position: absolute; left: 420px; top: 540px; width: 120px; height: 120px; background: #111; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 8px solid #fff; z-index: 3; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .hero-circles .watch-video i { color: #b2cbea; font-size: 2.8rem; }
+        .hero-circles .watch-label { position: absolute; left: 570px; top: 670px; color: #111; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.01em; }
+        .footer-main a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-main a:hover {
+            color: #fff;
+        }
+        .footer-main a:not(.cta-btn):hover::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -4px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .footer-bottom a {
+            transition: color 0.2s, transform 0.2s;
+        }
+        .footer-bottom a:hover {
+            color: #b2cbea;
+            transform: scale(1.18);
+            background: #fff;
+        }
+        .footer-bottom a[href="#top"]:hover {
+            background: #b2cbea;
+            color: #111;
+        }
+        /* Services Scroll Section Styles */
+        .services-scroll-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-scroll-wrapper {
+            width: 100%;
+            overflow: hidden;
+            perspective: 1200px;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .services-scroll-wrapper::before,
+        .services-scroll-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .services-scroll-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #fff, transparent);
+        }
+
+        .services-scroll-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #fff, transparent);
+        }
+
+        .services-scroll-container {
+            display: flex;
+            animation: scrollServices 30s linear infinite;
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+
+        @keyframes scrollServices {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .services-scroll-container:hover {
+            animation-play-state: paused;
+        }
+
+        .service-scroll-card {
+            position: relative;
+            width: 220px;
+            min-width: 220px;
+            height: 280px;
+            min-height: 280px;
+            max-width: 220px;
+            max-height: 280px;
+            background: linear-gradient(145deg, #fdfcf6 0%, #b2cbea 100%);
+            padding: 1.5rem 1rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            z-index: 1;
+            flex-shrink: 0;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1.2rem;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+        .service-scroll-card:hover {
+            transform: scale(1.06) translateY(-10px) rotateY(1deg);
+            box-shadow: 0 16px 48px rgba(50,80,140,0.13);
+            z-index: 10;
+        }
+
+        .service-scroll-card i {
+            font-size: 2.2rem;
+            color: #b2cbea;
+            background: rgba(178, 203, 234, 0.12);
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-scroll-card h3 {
+            font-size: 1.1rem;
+            color: #111;
+            font-weight: bold;
+            margin: 0 0 0.2rem 0;
+            letter-spacing: 0.01em;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+        .service-scroll-card p {
+            font-size: 0.98rem;
+            color: #444;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.5;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+        .service-scroll-card::before {
+            display: none;
+        }
+
+        .services-scroll-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 6vw;
+        }
+
+        .services-scroll-title h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .services-scroll-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .service-scroll-card {
+                width: 180px;
+                min-width: 180px;
+                max-width: 180px;
+                height: 220px;
+                min-height: 220px;
+                max-height: 220px;
+                padding: 1rem 0.5rem;
+                border-radius: 14px;
+            }
+            .service-scroll-card i {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .projects-scroll-section {
+            padding: 6rem 0;
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+        .projects-scroll-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 6vw;
+        }
+        .projects-scroll-title h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+        .projects-scroll-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .projects-scroll-wrapper {
+            width: 100%;
+            overflow: hidden;
+            perspective: 1200px;
+            padding: 2rem 0;
+            position: relative;
+        }
+        .projects-scroll-container {
+            display: flex;
+            animation: scrollProjects 30s linear infinite;
+            gap: 2.5rem;
+            padding: 1rem 0;
+        }
+        @keyframes scrollProjects {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        .projects-scroll-container:hover {
+            animation-play-state: paused;
+        }
+        .project-card {
+            position: relative;
+            width: 220px;
+            min-width: 220px;
+            height: 420px;
+            min-height: 420px;
+            max-width: 220px;
+            max-height: 420px;
+            background: linear-gradient(145deg, #fdfcf6 0%, #b2cbea 100%);
+            padding: 0;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .project-card:hover {
+            transform: scale(1.06) translateY(-10px) rotateY(1deg);
+            box-shadow: 0 16px 48px rgba(50,80,140,0.13);
+            z-index: 10;
+        }
+        .project-card .project-image {
+            width: 100%;
+            height: 180px;
+            background: rgba(178, 203, 234, 0.12);
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .project-card .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+        .project-card .project-content {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .project-card .project-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .project-card .project-badge {
+            background: #333;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .project-card .project-year {
+            font-size: 0.9rem;
+            color: #777;
+            font-weight: 500;
+        }
+        .project-card h3 {
+            font-size: 1.2rem;
+            color: #111;
+            font-weight: bold;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.01em;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            line-height: 1.3;
+        }
+        .project-card .project-description {
+            font-size: 0.9rem;
+            color: #444;
+            font-weight: 500;
+            margin: 0 0 1rem 0;
+            line-height: 1.5;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+        .project-card .project-tech-excellence {
+            font-size: 0.85rem;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .project-card .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+        .project-card .tech-tag {
+            background: #eee;
+            color: #555;
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .project-card .project-type-section {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .project-card .project-type-label {
+            background: rgba(178, 203, 234, 0.2);
+            color: #111;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            .projects-scroll-container {
+                gap: 1.2rem;
+            }
+            .project-card {
+                width: 180px;
+                min-width: 180px;
+                max-width: 180px;
+                height: 380px;
+                min-height: 380px;
+                max-height: 380px;
+                padding: 0;
+                border-radius: 14px;
+            }
+            .project-card .project-image {
+                height: 100px;
+                border-top-left-radius: 14px;
+                border-top-right-radius: 14px;
+            }
+            .project-card .project-content {
+                padding: 1rem 1.2rem;
+            }
+            .project-card .project-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+            .project-card h3 {
+                font-size: 1rem;
+            }
+            .project-card .project-description {
+                font-size: 0.8rem;
+            }
+            .project-card .project-tech-excellence,
+            .project-card .tech-tag,
+            .project-card .project-type-label {
+                font-size: 0.75rem;
+            }
+            .project-card .tech-tags {
+                gap: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="images/logo.png" alt="ITRAM MANAGEMENT Logo"></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="work.html">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+    <section class="hero-section">
+        <div class="hero-dot"></div>
+        <div class="hero-line"></div>
+        <div class="hero-left">
+            <div class="hero-title">
+                YOUR<br>PARTNER IN<br>
+                <span class="web-design">WEB DESIGN</span><br>
+                <span class="amp">&</span>
+                <span class="dev-badge">Development</span>
+            </div>
+            <div class="hero-desc">
+                In today's digital-first world, your online presence can make or break your business. If you're searching for a professional web agency, look no further. We craft stunning websites and seamless digital experiences that elevate brands and fuel growth.
+            </div>
+            <div class="scroll-arrow">
+                <div class="arrow-circle"><i class="fas fa-arrow-down"></i></div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-circles">
+                <div class="circle-blue"></div>
+                <div class="circle-black"></div>
+                
+                
+            </div>
+            <div class="hero-vertical">
+                <span>WHERE</span>
+                <span>DESIGN</span>
+                <span>MEETS</span>
+                <span>PRECISION</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Text 1 -->
+    <div class="scrolling-text-container">
+        <div class="scrolling-text-track">
+            <span class="scrolling-text">Crafting Digital Excellence • Transforming Ideas into Reality • Building Future-Ready Solutions •</span>
+            <span class="scrolling-text">Crafting Digital Excellence • Transforming Ideas into Reality • Building Future-Ready Solutions •</span>
+            </div>
+            </div>
+
+    <!-- About Section with Scrolling Images -->
+    <section class="about-section">
+        <div class="about-content">
+            <div class="about-header">
+                <h2>About <span style="color:#b2cbea;">CODESEVA</span></h2>
+                <p>We are a future-focused digital agency, passionate about building brands and digital experiences that inspire, engage, and deliver results.</p>
+            </div>
+            <div class="image-cards-container">
+                <div class="image-cards-track">
+                    <!-- First set of images -->
+                    <div class="image-card">
+                        <img src="images/brands elevated.jpg" alt="Brands Elevated">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>50+ Brands Elevated</h3>
+                                <p>We've transformed over 50 brands through innovative digital solutions, helping them achieve remarkable growth and market presence. Our strategic approach combines creativity with data-driven insights.</p>
+                                <a href="#" class="read-more">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <img src="images/clint rating.jpg" alt="Client Rating">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>5.0 Client Rating</h3>
+                                <p>Our commitment to excellence has earned us a perfect 5.0 rating from our clients. We pride ourselves on delivering exceptional results and maintaining long-term partnerships.</p>
+                                <a href="#" class="read-more">
+                                    View Testimonials <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <img src="images/project delevered.jpg" alt="Projects Delivered">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>100+ Projects Delivered</h3>
+                                <p>With over 100 successful projects across various industries, we've established ourselves as a trusted partner for businesses seeking digital transformation and growth.</p>
+                                <a href="#" class="read-more">
+                                    Explore Projects <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="image-card">
+                        <img src="images/brands elevated.jpg" alt="Brands Elevated">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>50+ Brands Elevated</h3>
+                                <p>We've transformed over 50 brands through innovative digital solutions, helping them achieve remarkable growth and market presence. Our strategic approach combines creativity with data-driven insights.</p>
+                                <a href="#" class="read-more">
+                                    Learn More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <img src="images/clint rating.jpg" alt="Client Rating">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>5.0 Client Rating</h3>
+                                <p>Our commitment to excellence has earned us a perfect 5.0 rating from our clients. We pride ourselves on delivering exceptional results and maintaining long-term partnerships.</p>
+                                <a href="#" class="read-more">
+                                    View Testimonials <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <img src="images/project delevered.jpg" alt="Projects Delivered">
+                        <div class="image-card-overlay">
+                            <div class="image-card-content">
+                                <h3>100+ Projects Delivered</h3>
+                                <p>With over 100 successful projects across various industries, we've established ourselves as a trusted partner for businesses seeking digital transformation and growth.</p>
+                                <a href="#" class="read-more">
+                                    Explore Projects <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Text 2 -->
+    <div class="scrolling-text-container">
+        <div class="scrolling-text-track">
+            <span class="scrolling-text">Innovative Solutions • Creative Excellence • Client Success Stories •</span>
+            <span class="scrolling-text">Innovative Solutions • Creative Excellence • Client Success Stories •</span>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services-scroll-section">
+        <div class="services-scroll-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive digital solutions to help your business thrive in the modern world</p>
+        </div>
+        <div class="services-scroll-wrapper">
+            <div class="services-scroll-container">
+                <!-- Web Development Services -->
+                <div class="service-scroll-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Custom Websites</h3>
+                    <p>Tailored websites that perfectly match your brand and business needs, built with modern frameworks.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>E-Commerce</h3>
+                    <p>Powerful online stores with secure payment gateways and seamless shopping experiences.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first websites that look and function perfectly across all devices.</p>
+                </div>
+
+                <!-- Software Development -->
+                <div class="service-scroll-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Custom Software</h3>
+                    <p>Bespoke software solutions tailored to your specific business requirements.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-mobile"></i>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>API Development</h3>
+                    <p>Robust and scalable API solutions for system integration.</p>
+                </div>
+
+                <!-- IT Infrastructure -->
+                <div class="service-scroll-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Server Management</h3>
+                    <p>24/7 server monitoring and optimization for maximum uptime.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Solutions</h3>
+                    <p>Design and implementation of secure network infrastructure.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Services</h3>
+                    <p>Cloud migration and management across major platforms.</p>
+                </div>
+
+                <!-- Duplicate cards for seamless scrolling -->
+                <div class="service-scroll-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Custom Websites</h3>
+                    <p>Tailored websites that perfectly match your brand and business needs, built with modern frameworks.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>E-Commerce</h3>
+                    <p>Powerful online stores with secure payment gateways and seamless shopping experiences.</p>
+                </div>
+                <div class="service-scroll-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first websites that look and function perfectly across all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Text 3 -->
+    <div class="scrolling-text-container">
+        <div class="scrolling-text-track">
+            <span class="scrolling-text">Delivering Impact • Driving Growth • Exceeding Expectations •</span>
+            <span class="scrolling-text">Delivering Impact • Driving Growth • Exceeding Expectations •</span>
+        </div>
+    </div>
+
+    <!-- Featured Projects Section -->
+    <section class="projects-scroll-section">
+        <div class="projects-scroll-title">
+            <h2>Selected Works</h2>
+            <p>Some of our best and most recent projects</p>
+        </div>
+        <div class="projects-scroll-wrapper">
+            <div class="projects-scroll-container">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/brands elevated.jpg" alt="Brands Elevated" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Brand Development</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Brands Elevated</h3>
+                        <p class="project-description">Transforming businesses through innovative digital solutions and strategic brand development.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Brand Strategy</span>
+                            <span class="tech-tag">Digital Marketing</span>
+                            <span class="tech-tag">Web Development</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">BRANDING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/clint rating.jpg" alt="Client Success" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Client Success</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Client Success Stories</h3>
+                        <p class="project-description">Consistently exceeding client expectations with innovative solutions and dedicated support.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Client Relations</span>
+                            <span class="tech-tag">Support</span>
+                            <span class="tech-tag">Success Metrics</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">SERVICE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/project delevered.jpg" alt="Project Delivery" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Project Excellence</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Project Delivery</h3>
+                        <p class="project-description">Successful implementations across industries with proven methodologies and best practices.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Project Management</span>
+                            <span class="tech-tag">Implementation</span>
+                            <span class="tech-tag">Quality Assurance</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">DELIVERY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duplicate cards for seamless scroll -->
+                <!-- Project 1 Duplicate -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/brands elevated.jpg" alt="Brands Elevated" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Brand Development</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Brands Elevated</h3>
+                        <p class="project-description">Transforming businesses through innovative digital solutions and strategic brand development.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Brand Strategy</span>
+                            <span class="tech-tag">Digital Marketing</span>
+                            <span class="tech-tag">Web Development</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">BRANDING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 Duplicate -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/clint rating.jpg" alt="Client Success" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Client Success</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Client Success Stories</h3>
+                        <p class="project-description">Consistently exceeding client expectations with innovative solutions and dedicated support.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Client Relations</span>
+                            <span class="tech-tag">Support</span>
+                            <span class="tech-tag">Success Metrics</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">SERVICE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 Duplicate -->
+                <div class="project-card">
+                    <div class="project-image" style="background: #f5f5f5;">
+                        <img src="./images/project delevered.jpg" alt="Project Delivery" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header-meta">
+                            <span class="project-badge">Project Excellence</span>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <h3>Project Delivery</h3>
+                        <p class="project-description">Successful implementations across industries with proven methodologies and best practices.</p>
+                        <div class="project-tech-excellence">Technology Excellence</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Project Management</span>
+                            <span class="tech-tag">Implementation</span>
+                            <span class="tech-tag">Quality Assurance</span>
+                        </div>
+                        <div class="project-type-section">
+                            <div class="project-type-label">DELIVERY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="background:#111; color:#fff; padding: 0; text-align:center; position:relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="footer-main" style="width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;">
+            <div style="font-size:1.5rem;font-weight:700;letter-spacing:0.01em;margin-bottom:1.2rem;">
+                <span style="font-size:2rem;vertical-align:middle;">🖐️</span> WHAT'S CRACKIN'?
+            </div>
+            <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1.2rem;line-height:1.05;">ASK TO GET!</div>
+            <div style="font-size:2.1rem;font-weight:500;margin-bottom:2.5rem;">
+                <a href="mailto:info@codeseven.in" style="color:#fff;text-decoration:underline;">info@CODESEVA.in</a>
+            </div>
+            <div style="display:flex;justify-content:center;gap:2.5rem;font-size:1.1rem;font-weight:700;margin-bottom:0;">
+                <a href="index.html" style="color:#fff;text-decoration:none;">ABOUT</a>
+                <a href="#services" style="color:#fff;text-decoration:none;">SERVICES</a>
+                <a href="work.html" style="color:#fff;text-decoration:none;">WORK</a>
+                <a href="#contact" style="color:#fff;text-decoration:none;">CONTACT US</a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="width:100vw;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3vw 1.2rem 3vw;position:relative;">
+            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 CODE SEVA</div>
+            <div style="display:flex;align-items:center;gap:1.5rem;">
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#top" style="color:#111;background:#fff;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add anchor sections for navigation targets -->
+    <section id="about"></section>
+    <section id="services"></section>
+    <section id="works"></section>
+    <section id="contact"></section>
+
+    <script src="js/setup.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1 && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Parallax scroll effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxBg = document.querySelector('.parallax-bg');
+            if (parallaxBg) {
+                parallaxBg.style.setProperty('--scroll-y', `${scrolled * 0.5}px`);
+            }
+            
+            // Fade in elements on scroll
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const isVisible = elementTop < window.innerHeight && elementBottom >= 0;
+                
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Services Scroll Animation
+        const scrollContainers = document.querySelectorAll('.services-scroll-container');
+        
+        scrollContainers.forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                container.style.animationPlayState = 'paused';
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                container.style.animationPlayState = 'running';
+            });
+        });
+
+        // Featured Projects Horizontal Scroll
+        function loadFeaturedProjectsScroll() {
+            const featuredProjects = [
+                {
+                    title: "CPL SPORTS TII",
+                    description: "Advanced sports event management ecosystem connecting elite players with...",
+                    image: "images/cpl_sports.png",
+                    category: "Enterprise Sports Platform",
+                    year: "2024",
+                    technologies: ["Flutter Pro", "PHP 8.2", "Laravel", "Bootstrap 5"],
+                    projectType: "WEB APP"
+                },
+                {
+                    title: "Web Development Agency",
+                    description: "Crafting modern websites and digital experiences for businesses of all sizes.",
+                    image: "images/clint rating.jpg",
+                    category: "Digital Agency",
+                    year: "2023",
+                    technologies: ["React", "Node.js", "MongoDB"],
+                    projectType: "WEB APP"
+                },
+                {
+                    title: "Mobile Finance App",
+                    description: "An intuitive finance management app that helps users track expenses and manage budgets efficiently.",
+                    image: "images/project2.jpg",
+                    category: "FinTech",
+                    year: "2023",
+                    technologies: ["Mobile Development", "UI Design", "FinTech"],
+                    projectType: "MOBILE APP"
+                },
+                {
+                    title: "Healthcare Patient Portal",
+                    description: "A secure patient portal for healthcare providers, enabling seamless communication and record access.",
+                    image: "images/project3.jpg",
+                    category: "Healthcare Solution",
+                    year: "2024",
+                    technologies: ["Web Development", "Security", "Healthcare"],
+                    projectType: "WEB APP"
+                },
+                {
+                    title: "Restaurant Ordering System",
+                    description: "A digital ordering system for restaurants with real-time order tracking and inventory management.",
+                    image: "images/project4.jpg",
+                    category: "E-commerce",
+                    year: "2023",
+                    technologies: ["Web App", "Mobile App", "UI/UX Design"],
+                    projectType: "WEB APP"
+                },
+                {
+                    title: "Fitness Tracking Application",
+                    description: "A comprehensive fitness tracking app with workout plans, nutrition tracking, and progress analytics.",
+                    image: "images/project5.jpg",
+                    category: "Health & Wellness",
+                    year: "2024",
+                    technologies: ["Mobile Development", "Health & Fitness", "Data Analytics"],
+                    projectType: "MOBILE APP"
+                },
+                {
+                    title: "Corporate Branding Redesign",
+                    description: "A complete corporate identity redesign including logo, brand guidelines, and marketing materials.",
+                    image: "images/project6.jpg",
+                    category: "Branding & Design",
+                    year: "2023",
+                    technologies: ["Branding", "Graphic Design", "UI Design"],
+                    projectType: "BRANDING"
+                },
+                {
+                    title: "Cybersecurity Assessment Platform",
+                    description: "Enterprise-grade security assessment tool for identifying vulnerabilities and providing remediation strategies.",
+                    image: "images/project7.jpg",
+                    category: "Security Solution",
+                    year: "2024",
+                    technologies: ["Security", "Enterprise", "Web Development"],
+                    projectType: "SOFTWARE"
+                },
+                {
+                    title: "Smart Home Automation App",
+                    description: "IoT control system allowing users to manage all smart home devices from a single intuitive interface.",
+                    image: "images/project8.jpg",
+                    category: "IoT & Automation",
+                    year: "2024",
+                    technologies: ["IoT", "Mobile Development", "UI Design"],
+                    projectType: "MOBILE APP"
+                }
+            ];
+            const container = document.querySelector('.projects-scroll-container');
+            if (!container) return;
+            // Clear container
+            container.innerHTML = '';
+            // Add cards twice for seamless scroll
+            for (let i = 0; i < 2; i++) {
+                featuredProjects.forEach(project => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <div class="project-image">
+                            <img src="${project.image}" alt="${project.title}" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-meta">
+                                <span class="project-badge">${project.category}</span>
+                                <span class="project-year">${project.year}</span>
+                            </div>
+                            <h3>${project.title}</h3>
+                            <p class="project-description">${project.description}</p>
+                            <div class="project-tech-excellence">Technology Excellence</div>
+                            <div class="tech-tags">
+                                ${project.technologies.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="project-type-section">
+                                <div class="project-type-label">${project.projectType}</div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadFeaturedProjectsScroll);
+    </script>
+</body>
+</html> 

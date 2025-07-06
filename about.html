@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ITRAM MANAGEMENT</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; font-family: 'Montserrat', Arial, sans-serif; margin: 0; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem 1.5rem 2rem; background: #fff; border-bottom: 1px solid #eee; }
+        .navbar .logo img { 
+            height: 80px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .navbar .logo img:hover {
+            transform: translateY(-2px);
+        }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: #111; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: #3a3a3a; }
+        .cta-btn { background: #443f43; color: #fff; border: none; border-radius: 1.2rem; padding: 0.7rem 1.7rem; font-weight: 700; font-size: 1.05rem; margin-left: 2rem; cursor: pointer; transition: background 0.2s; }
+        .cta-btn:hover { background: #222; }
+
+        /* About Page Specific Styles */
+        .about-hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, #fff 0%, #b2cbea 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 6vw;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/pattern.svg') repeat;
+            opacity: 0.1;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .about-hero p {
+            font-size: 1.4rem;
+            color: #333;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            padding: 6rem 6vw;
+            background: #fff;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #b2cbea;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #b2cbea;
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 3px #b2cbea;
+            top: 0;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: calc(50% - 10px);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: calc(50% - 10px);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: -2px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #b2cbea;
+            background: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: calc(50% + 2rem);
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            transform: translateX(-20px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            transform: translateX(20px);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-text {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: 20px !important;
+                right: auto !important;
+            }
+
+            .timeline-year {
+                left: 80px !important;
+                right: auto !important;
+            }
+
+            .timeline-content {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* Add animation classes */
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item.animate .timeline-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .values-section {
+            padding: 6rem 6vw;
+            background: #f8f9fa;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: #b2cbea;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.8rem;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            padding: 6rem 6vw;
+            background: #fff;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .team-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .team-modal-content {
+            position: relative;
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 20px;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .team-modal.active .team-modal-content {
+            transform: translateY(0);
+        }
+
+        .team-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #111;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-modal-close:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .team-modal-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .team-modal-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-modal-info h2 {
+            font-size: 2rem;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-modal-info p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .team-modal-bio {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .team-modal-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .team-detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .team-detail-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .team-detail-value {
+            font-size: 1.1rem;
+            color: #111;
+        }
+
+        .team-social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .team-social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-social-links a:hover {
+            background: #111;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1200px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero {
+                padding: 6rem 3vw;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="images/logo.png" alt="ITRAM MANAGEMENT Logo"></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="services.html">Services</a>
+            <a href="work.html">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Crafting Digital Excellence Since 2014</h1>
+            <p>We're more than just a digital agency. We're your partners in transformation, bringing your vision to life through innovative technology and creative solutions.</p>
+        </div>
+        <div class="about-hero-image">
+            <img src="images/aboutmm.png" alt="Animated Digital Excellence" class="animated-image">
+        </div>
+    </section>
+
+    <!-- Main About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">The Beginning</h3>
+                        <p class="timeline-text">Founded as a small web development studio with a vision to help businesses thrive in the digital age. Starting with just a team of three passionate developers, we began our journey to revolutionize digital solutions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Expanding Services</h3>
+                        <p class="timeline-text">Expanded our services to include digital marketing and brand strategy, serving over 1,000 clients. Our team grew to 20+ specialists, and we opened our first international office.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Global Reach</h3>
+                        <p class="timeline-text">Established international presence with clients from over 20 countries. Launched our innovative cloud solutions division and achieved ISO certification for quality management.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Industry Leader</h3>
+                        <p class="timeline-text">Now a full-service digital agency with over 10,000 successful projects. Our team of 50+ experts continues to push boundaries in web development, AI integration, and digital transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">Our Core Values</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">The principles that guide everything we do</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>We constantly push boundaries and embrace new technologies to deliver cutting-edge solutions.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Collaboration</h3>
+                    <p>We believe in the power of teamwork and partnership with our clients to achieve exceptional results.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Excellence</h3>
+                    <p>We maintain the highest standards in everything we do, from code quality to client communication.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Passion</h3>
+                    <p>We love what we do and bring enthusiasm to every project we undertake.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Integrity</h3>
+                    <p>We operate with complete transparency and always put our clients' interests first.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Growth</h3>
+                    <p>We're committed to continuous learning and helping our clients grow their businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">Meet Our Team</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">The talented people behind our success</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/team 1.webp" alt="Team Member">
+                    <h3>John Smith</h3>
+                    <p>CEO & Founder</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/prasad.png" alt="Team Member">
+                    <h3>Sarah Johnson</h3>
+                    <p>Creative Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/swastik.png" alt="Team Member">
+                    <h3>Michael Chen</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/robert.png" alt="Team Member">
+                    <h3>Emma Wilson</h3>
+                    <p>UX Designer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Member Modal -->
+    <div class="team-modal" id="teamModal">
+        <div class="team-modal-content">
+            <div class="team-modal-close"><i class="fas fa-times"></i></div>
+            <div class="team-modal-header">
+                <img class="team-modal-image" src="images/team 1.webp" alt="Team Member">
+                <div class="team-modal-info">
+                    <h2></h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="team-modal-bio"></div>
+            <div class="team-modal-details">
+                <div class="team-detail-item">
+                    <span class="team-detail-label">Experience</span>
+                    <span class="team-detail-value"></span>
+                </div>
+                <div class="team-detail-item">
+                    <span class="team-detail-label">Expertise</span>
+                    <span class="team-detail-value"></span>
+                </div>
+                <div class="team-detail-item">
+                    <span class="team-detail-label">Education</span>
+                    <span class="team-detail-value"></span>
+                </div>
+                <div class="team-detail-item">
+                    <span class="team-detail-label">Languages</span>
+                    <span class="team-detail-value"></span>
+                </div>
+            </div>
+            <div class="team-social-links">
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="background:#111; color:#fff; padding: 0; text-align:center; position:relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="footer-main" style="width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;">
+            <div style="font-size:1.5rem;font-weight:700;letter-spacing:0.01em;margin-bottom:1.2rem;">
+                <span style="font-size:2rem;vertical-align:middle;">🖐️</span> WHAT'S CRACKIN'?
+            </div>
+            <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1.2rem;line-height:1.05;">ASK TO GET!</div>
+            <div style="font-size:2.1rem;font-weight:500;margin-bottom:2.5rem;">
+                <a href="mailto:info@trammanagement.com" style="color:#fff;text-decoration:underline;">info@trammanagement.com</a>
+            </div>
+            <div style="display:flex;justify-content:center;gap:2.5rem;font-size:1.1rem;font-weight:700;margin-bottom:0;">
+                <a href="index.html" style="color:#fff;text-decoration:none;">ABOUT</a>
+                <a href="#services" style="color:#fff;text-decoration:none;">SERVICES</a>
+                <a href="work.html" style="color:#fff;text-decoration:none;">WORK</a>
+                <a href="#contact" style="color:#fff;text-decoration:none;">CONTACT US</a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="width:100vw;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3vw 1.2rem 3vw;position:relative;">
+            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 ITRAM MANAGEMENT</div>
+            <div style="display:flex;align-items:center;gap:1.5rem;">
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#top" style="color:#111;background:#fff;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+
+        // Timeline scroll animation
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach(item => {
+                if (isElementInViewport(item)) {
+                    item.classList.add('animate');
+                }
+            });
+        }
+
+        // Initial check for visible timeline items
+        animateTimeline();
+
+        // Listen for scroll events
+        window.addEventListener('scroll', animateTimeline);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1 && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Team Member Modal functionality
+        const teamMembers = document.querySelectorAll('.team-member');
+        const teamModal = document.getElementById('teamModal');
+        const teamModalClose = teamModal.querySelector('.team-modal-close');
+
+        const teamData = {
+            'member1': {
+                name: 'John Smith',
+                position: 'CEO & Founder',
+                image: 'images/team 1.webp',
+                bio: 'John is a visionary leader with over 15 years of experience in the tech industry. He founded ITRAM MANAGEMENT with the goal of helping businesses transform their digital presence and achieve sustainable growth.',
+                experience: '15+ years',
+                expertise: 'Business Strategy, Technology Innovation',
+                education: 'MBA, Stanford University',
+                languages: 'English, Spanish',
+                linkedin: '#',
+                twitter: '#',
+                github: '#'
+            },
+            'member2': {
+                name: 'Sarah Johnson',
+                position: 'Creative Director',
+                image: 'images/prasad.png',
+                bio: 'Sarah brings over a decade of experience in design and branding. Her creative vision has helped shape the visual identity of numerous successful brands.',
+                experience: '12+ years',
+                expertise: 'UI/UX Design, Brand Strategy',
+                education: 'BFA in Design, RISD',
+                languages: 'English, French',
+                linkedin: '#',
+                twitter: '#',
+                github: '#'
+            },
+            'member3': {
+                name: 'Michael Chen',
+                position: 'Lead Developer',
+                image: 'images/swastik.png',
+                bio: 'Michael is a full-stack developer with expertise in modern web technologies. He leads our development team in creating robust and scalable solutions.',
+                experience: '8+ years',
+                expertise: 'Full-stack Development, Cloud Architecture',
+                education: 'MS in Computer Science, MIT',
+                languages: 'English, Mandarin',
+                linkedin: '#',
+                twitter: '#',
+                github: '#'
+            },
+            'member4': {
+                name: 'Emma Wilson',
+                position: 'UX Designer',
+                image: 'images/robert.png',
+                bio: 'Emma specializes in creating intuitive and user-centered digital experiences. Her work focuses on making complex systems simple and enjoyable to use.',
+                experience: '6+ years',
+                expertise: 'UX Research, Interaction Design',
+                education: 'BS in HCI, Carnegie Mellon',
+                languages: 'English, German',
+                linkedin: '#',
+                twitter: '#',
+                github: '#'
+            }
+        };
+
+        teamMembers.forEach((member, index) => {
+            member.addEventListener('click', () => {
+                const memberId = `member${index + 1}`;
+                const memberData = teamData[memberId];
+                
+                if (memberData) {
+                    teamModal.querySelector('.team-modal-image').src = memberData.image;
+                    teamModal.querySelector('.team-modal-info h2').textContent = memberData.name;
+                    teamModal.querySelector('.team-modal-info p').textContent = memberData.position;
+                    teamModal.querySelector('.team-modal-bio').textContent = memberData.bio;
+                    teamModal.querySelectorAll('.team-detail-value')[0].textContent = memberData.experience;
+                    teamModal.querySelectorAll('.team-detail-value')[1].textContent = memberData.expertise;
+                    teamModal.querySelectorAll('.team-detail-value')[2].textContent = memberData.education;
+                    teamModal.querySelectorAll('.team-detail-value')[3].textContent = memberData.languages;
+                    
+                    const socialLinks = teamModal.querySelectorAll('.team-social-links a');
+                    socialLinks[0].href = memberData.linkedin;
+                    socialLinks[1].href = memberData.twitter;
+                    socialLinks[2].href = memberData.github;
+                    
+                    teamModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        teamModalClose.addEventListener('click', () => {
+            teamModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        teamModal.addEventListener('click', (e) => {
+            if (e.target === teamModal) {
+                teamModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html> 

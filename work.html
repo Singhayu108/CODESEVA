@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work - ITRAM MANAGEMENT</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; font-family: 'Montserrat', Arial, sans-serif; margin: 0; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem 1.5rem 2rem; background: #fff; border-bottom: 1px solid #eee; }
+        .navbar .logo img { 
+            height: 80px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .navbar .logo img:hover {
+            transform: translateY(-2px);
+        }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: #111; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: #3a3a3a; }
+        .cta-btn { background: #443f43; color: #fff; border: none; border-radius: 1.2rem; padding: 0.7rem 1.7rem; font-weight: 700; font-size: 1.05rem; margin-left: 2rem; cursor: pointer; transition: background 0.2s; }
+        .cta-btn:hover { background: #222; }
+
+        /* Work Page Specific Styles */
+        .work-hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, #fff 0%, #b2cbea 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 6vw;
+            display: flex;
+            align-items: center;
+        }
+
+        .work-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/pattern.svg') repeat;
+            opacity: 0.1;
+        }
+
+        .work-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .work-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .work-hero p {
+            font-size: 1.4rem;
+            color: #333;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-section {
+            padding: 6rem 6vw;
+            background: #fff;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .portfolio-image {
+            position: relative;
+            padding-bottom: 75%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 2rem;
+            text-align: center;
+            pointer-events: auto;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .view-project {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        .view-project:hover {
+            background: #fff;
+            color: #111;
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            padding: 6rem 6vw;
+            background: #111;
+            color: #fff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #b2cbea;
+            margin-bottom: 1rem;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .work-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            background: #fff;
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 20px;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #111;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            color: #111;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background: #111;
+            color: #fff;
+        }
+
+        .primary-btn:hover {
+            background: #000;
+        }
+
+        .secondary-btn {
+            background: #f8f9fa;
+            color: #111;
+        }
+
+        .secondary-btn:hover {
+            background: #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            .modal-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="images/logo.png" alt="ITRAM MANAGEMENT Logo"></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="work.html" class="active">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="work-hero">
+        <div class="work-hero-content">
+            <h1>Showcasing Our Creative Journey</h1>
+            <p>Explore a collection of our diverse projects, from innovative web designs to robust software solutions.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="app">App Development</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="marketing">Digital Marketing</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Web Development Projects -->
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image" style="background-image: url('images/clint rating.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A modern e-commerce solution with seamless user experience</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image" style="background-image: url('images/brands elevated.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>Corporate Website</h3>
+                    <p>Clean and professional website for a global corporation</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- App Development Projects -->
+            <div class="portfolio-item" data-category="app">
+                <div class="portfolio-image" style="background-image: url('images/happy clint.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>Fitness App</h3>
+                    <p>Mobile application for tracking workouts and nutrition</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="app">
+                <div class="portfolio-image" style="background-image: url('images/project delevered.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>Food Delivery App</h3>
+                    <p>User-friendly food ordering and delivery platform</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Branding Projects -->
+            <div class="portfolio-item" data-category="branding">
+                <div class="portfolio-image" style="background-image: url('images/happy clint.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>Brand Identity</h3>
+                    <p>Complete branding package for a startup company</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="branding">
+                <div class="portfolio-image" style="background-image: url('images/brands elevated.jpg')"></div>
+                <div class="portfolio-overlay">
+                    <h3>Logo Design</h3>
+                    <p>Modern logo design for a tech company</p>
+                    <button class="view-project">View Project <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>250+</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h3>180+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Team Members</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="background:#111; color:#fff; padding: 0; text-align:center; position:relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="footer-main" style="width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;">
+            <div style="font-size:1.5rem;font-weight:700;letter-spacing:0.01em;margin-bottom:1.2rem;">
+                <span style="font-size:2rem;vertical-align:middle;">🖐️</span> WHAT'S CRACKIN'?
+            </div>
+            <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1.2rem;line-height:1.05;">ASK TO GET!</div>
+            <div style="font-size:2.1rem;font-weight:500;margin-bottom:2.5rem;">
+                <a href="mailto:info@trammanagement.com" style="color:#fff;text-decoration:underline;">info@trammanagement.com</a>
+            </div>
+            <div style="display:flex;justify-content:center;gap:2.5rem;font-size:1.1rem;font-weight:700;margin-bottom:0;">
+                <a href="index.html" style="color:#fff;text-decoration:none;">ABOUT</a>
+                <a href="#services" style="color:#fff;text-decoration:none;">SERVICES</a>
+                <a href="work.html" style="color:#fff;text-decoration:none;">WORK</a>
+                <a href="#contact" style="color:#fff;text-decoration:none;">CONTACT US</a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="width:100vw;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3vw 1.2rem 3vw;position:relative;">
+            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 ITRAM MANAGEMENT</div>
+            <div style="display:flex;align-items:center;gap:1.5rem;">
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#top" style="color:#111;background:#fff;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-close"><i class="fas fa-times"></i></div>
+            <img class="modal-image" src="" alt="Project Image">
+            <h2 class="modal-title"></h2>
+            <p class="modal-description"></p>
+            <div class="modal-details">
+                <div class="detail-item">
+                    <span class="detail-label">Client</span>
+                    <span class="detail-value"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Category</span>
+                    <span class="detail-value"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Technologies</span>
+                    <span class="detail-value"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value"></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="#" class="modal-btn primary-btn">Visit Website</a>
+                <a href="#" class="modal-btn secondary-btn">View Case Study</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const modal = document.getElementById('projectModal');
+        const modalClose = modal.querySelector('.modal-close');
+
+        const projectData = {
+            'web1': {
+                title: 'E-Commerce Platform',
+                description: 'A comprehensive e-commerce solution built with modern technologies. Features include real-time inventory management, secure payment processing, and a responsive design that works seamlessly across all devices.',
+                client: 'Fashion Retail Co.',
+                category: 'Web Development',
+                technologies: 'React, Node.js, MongoDB',
+                date: 'January 2024',
+                image: 'images/project1.jpg',
+                website: '#',
+                caseStudy: '#'
+            },
+            'web2': {
+                title: 'Corporate Website',
+                description: 'A modern corporate website showcasing company services, portfolio, and team members. Built with performance and user experience in mind.',
+                client: 'Global Corp Ltd.',
+                category: 'Web Development',
+                technologies: 'Vue.js, Laravel, MySQL',
+                date: 'December 2023',
+                image: 'images/project2.jpg',
+                website: '#',
+                caseStudy: '#'
+            },
+            'app1': {
+                title: 'Fitness App',
+                description: 'A comprehensive mobile application for tracking workouts and nutrition. Features include personalized workout plans, progress tracking, and social sharing.',
+                client: 'FitLife Inc.',
+                category: 'App Development',
+                technologies: 'React Native, Firebase',
+                date: 'March 2024',
+                image: 'images/project3.jpg',
+                website: '#',
+                caseStudy: '#'
+            },
+            'app2': {
+                title: 'Food Delivery App',
+                description: 'A user-friendly food ordering and delivery platform with real-time tracking and secure payment integration.',
+                client: 'FoodExpress',
+                category: 'App Development',
+                technologies: 'Flutter, Node.js, PostgreSQL',
+                date: 'February 2024',
+                image: 'images/project4.jpg',
+                website: '#',
+                caseStudy: '#'
+            },
+            'brand1': {
+                title: 'Brand Identity',
+                description: 'Complete branding package including logo design, brand guidelines, and marketing materials for a startup company.',
+                client: 'TechStart Inc.',
+                category: 'Branding',
+                technologies: 'Adobe Creative Suite',
+                date: 'April 2024',
+                image: 'images/project5.jpg',
+                website: '#',
+                caseStudy: '#'
+            },
+            'brand2': {
+                title: 'Logo Design',
+                description: 'Modern and versatile logo design for a tech company, including variations for different use cases and brand guidelines.',
+                client: 'InnovateTech',
+                category: 'Branding',
+                technologies: 'Adobe Illustrator, Figma',
+                date: 'March 2024',
+                image: 'images/project6.jpg',
+                website: '#',
+                caseStudy: '#'
+            }
+        };
+
+        // Update portfolio items to include data attributes
+        portfolioItems.forEach((item, index) => {
+            const category = item.getAttribute('data-category');
+            const projectId = category === 'web' ? `web${Math.ceil((index + 1) / 2)}` :
+                            category === 'app' ? `app${Math.ceil((index + 1) / 2)}` :
+                            `brand${Math.ceil((index + 1) / 2)}`;
+            
+            item.setAttribute('data-project-id', projectId);
+            
+            // Add click event listener to the View Project button
+            const viewProjectBtn = item.querySelector('.view-project');
+            if (viewProjectBtn) {
+                viewProjectBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent event bubbling
+                    const project = projectData[projectId];
+                    
+                    if (project) {
+                        modal.querySelector('.modal-image').src = project.image;
+                        modal.querySelector('.modal-title').textContent = project.title;
+                        modal.querySelector('.modal-description').textContent = project.description;
+                        modal.querySelectorAll('.detail-value')[0].textContent = project.client;
+                        modal.querySelectorAll('.detail-value')[1].textContent = project.category;
+                        modal.querySelectorAll('.detail-value')[2].textContent = project.technologies;
+                        modal.querySelectorAll('.detail-value')[3].textContent = project.date;
+                        modal.querySelector('.primary-btn').href = project.website;
+                        modal.querySelector('.secondary-btn').href = project.caseStudy;
+                        
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+
+                        // Add animation class
+                        modal.querySelector('.modal-content').classList.add('modal-animate');
+                    }
+                });
+            }
+        });
+
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .modal-content {
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s ease;
+            }
+            .modal-animate {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Modal close functionality with animation
+        function closeModal() {
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.classList.remove('modal-animate');
+            modalContent.style.opacity = '0';
+            modalContent.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                modalContent.style.opacity = '';
+                modalContent.style.transform = '';
+            }, 300);
+        }
+
+        modalClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Add keyboard support for closing modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1 && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

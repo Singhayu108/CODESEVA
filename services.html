@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - ITRAM MANAGEMENT</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; font-family: 'Montserrat', Arial, sans-serif; margin: 0; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem 1.5rem 2rem; background: #fff; border-bottom: 1px solid #eee; }
+        .navbar .logo img { 
+            height: 80px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .navbar .logo img:hover {
+            transform: translateY(-2px);
+        }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: #111; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: #3a3a3a; }
+        .cta-btn { background: #443f43; color: #fff; border: none; border-radius: 1.2rem; padding: 0.7rem 1.7rem; font-weight: 700; font-size: 1.05rem; margin-left: 2rem; cursor: pointer; transition: background 0.2s; }
+        .cta-btn:hover { background: #222; }
+
+        /* Services Page Specific Styles */
+        .services-hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, #fff 0%, #b2cbea 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 6vw;
+            display: flex;
+            align-items: center;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/pattern.svg') repeat;
+            opacity: 0.1;
+        }
+
+        .services-hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .services-hero p {
+            font-size: 1.4rem;
+            color: #333;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .service-category {
+            padding: 4rem 0 2rem 0;
+            background: #fff;
+        }
+
+        .service-category:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .service-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .service-intro-content {
+            padding-right: 2rem;
+        }
+
+        .service-intro-image {
+            position: relative;
+            height: auto;
+            width: 100%;
+        }
+
+        .service-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 6vw;
+        }
+
+        .category-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .category-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            justify-items: center;
+            align-items: stretch;
+            padding: 0 2vw;
+        }
+
+        .service-card {
+            position: relative;
+            min-width: 320px;
+            background: linear-gradient(135deg, #fff 0%, #b2cbea 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+
+        .service-card:hover {
+            transform: scale(1.08) translateY(-12px) rotateY(2deg);
+            box-shadow: 0 20px 40px rgba(50,80,140,0.18);
+            z-index: 10;
+            animation-play-state: paused;
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: #b2cbea;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: #111;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            transform: translateY(-5px);
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover p {
+            opacity: 0.8;
+        }
+
+        .process-section {
+            padding: 6rem 6vw;
+            background: #111;
+            color: #fff;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            right: -1rem;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 5rem;
+            height: 5rem;
+            background: #b2cbea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+            color: #111;
+        }
+
+        .process-step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .process-step p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .category-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .service-card {
+                min-width: 280px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .service-intro {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .service-intro-content {
+                padding-right: 0;
+            }
+
+            .service-intro-image {
+                width: 100%;
+            }
+        }
+
+        /* Modal Styles */
+        .service-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,24,48,0.45);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-modal-content {
+            background: #fff;
+            padding: 32px 28px;
+            border-radius: 16px;
+            max-width: 420px;
+            width: 90vw;
+            box-shadow: 0 12px 32px rgba(50,80,140,0.18);
+            position: relative;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .service-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 28px;
+            color: #222e3a;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .service-modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .service-modal-title {
+            font-size: 1.3em;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #222e3a;
+        }
+
+        .service-modal-text {
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Remove horizontal scrolling and hover effects for service cards */
+        .services-scroll-wrapper, .services-scroll-container {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="images/logo.png" alt="ITRAM MANAGEMENT Logo"></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="work.html">Works</a>
+            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="services-hero-content">
+            <h1>Elevating Your Digital Presence</h1>
+            <p>Our comprehensive suite of services is designed to propel your business forward in the digital landscape.</p>
+        </div>
+    </section>
+
+    <!-- Web Development Services -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>Web Development</h2>
+            <p>Custom web solutions built with cutting-edge technologies</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Custom Websites</h3>
+                <p>Tailored websites that perfectly match your brand and business needs, built with modern frameworks and best practices.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>E-Commerce</h3>
+                <p>Powerful online stores with secure payment gateways, inventory management, and seamless shopping experiences.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsive Design</h3>
+                <p>Mobile-first websites that look and function perfectly across all devices and screen sizes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Development -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>Software Development</h2>
+            <p>Custom software solutions for modern business needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>Custom Software</h3>
+                <p>Bespoke software solutions tailored to your specific business requirements and workflows.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mobile"></i>
+                <h3>Mobile Apps</h3>
+                <p>Native and cross-platform mobile applications for iOS and Android with seamless user experience.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cogs"></i>
+                <h3>API Development</h3>
+                <p>Robust and scalable API solutions for system integration and data exchange.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IT Infrastructure -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>IT Infrastructure</h2>
+            <p>Enterprise-grade IT solutions and support</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-server"></i>
+                <h3>Server Management</h3>
+                <p>24/7 server monitoring, maintenance, and optimization for maximum uptime and performance.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Network Solutions</h3>
+                <p>Design and implementation of secure and scalable network infrastructure.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud Services</h3>
+                <p>Cloud migration, optimization, and management across major platforms (AWS, Azure, GCP).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cybersecurity -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>Cybersecurity</h2>
+            <p>Comprehensive security solutions for your digital assets</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Security Audit</h3>
+                <p>Thorough assessment of your systems and infrastructure to identify vulnerabilities and risks.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-lock"></i>
+                <h3>Data Protection</h3>
+                <p>Implementation of robust data protection measures and compliance with privacy regulations.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-user-shield"></i>
+                <h3>Access Control</h3>
+                <p>Advanced access management systems and authentication solutions for enhanced security.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Solutions -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>Enterprise Solutions</h2>
+            <p>Digital transformation for large-scale operations</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-database"></i>
+                <h3>Data Analytics</h3>
+                <p>Advanced analytics solutions to transform raw data into actionable business insights.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-robot"></i>
+                <h3>AI & Machine Learning</h3>
+                <p>Implementation of AI solutions for process automation and intelligent decision-making.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>System Integration</h3>
+                <p>Seamless integration of various business systems and applications for improved efficiency.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DevOps Services -->
+    <section class="service-category">
+        <div class="category-header">
+            <h2>DevOps Services</h2>
+            <p>Streamline development and operations</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>CI/CD Pipeline</h3>
+                <p>Setup and optimization of continuous integration and deployment pipelines for faster delivery.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Infrastructure as Code</h3>
+                <p>Automated infrastructure provisioning and management using modern IaC tools.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance Monitoring</h3>
+                <p>Comprehensive monitoring and optimization of application performance and resources.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process -->
+    <section class="process-section">
+        <div class="category-header">
+            <h2 style="color: #fff;">Our Process</h2>
+            <p style="color: rgba(255,255,255,0.8);">How we bring your vision to life</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Discovery</h3>
+                <p>We learn about your business, goals, and requirements</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Planning</h3>
+                <p>Creating detailed roadmap and strategy</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Development</h3>
+                <p>Building your solution with precision</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Launch</h3>
+                <p>Deploying and ensuring everything works perfectly</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="background:#111; color:#fff; padding: 0; text-align:center; position:relative; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="footer-main" style="width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55vh;">
+            <div style="font-size:1.5rem;font-weight:700;letter-spacing:0.01em;margin-bottom:1.2rem;">
+                <span style="font-size:2rem;vertical-align:middle;">🖐️</span> WHAT'S CRACKIN'?
+            </div>
+            <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1.2rem;line-height:1.05;">ASK TO GET!</div>
+            <div style="font-size:2.1rem;font-weight:500;margin-bottom:2.5rem;">
+                <a href="mailto:info@trammanagement.com" style="color:#fff;text-decoration:underline;">info@trammanagement.com</a>
+            </div>
+            <div style="display:flex;justify-content:center;gap:2.5rem;font-size:1.1rem;font-weight:700;margin-bottom:0;">
+                <a href="index.html" style="color:#fff;text-decoration:none;">ABOUT</a>
+                <a href="#services" style="color:#fff;text-decoration:none;">SERVICES</a>
+                <a href="work.html" style="color:#fff;text-decoration:none;">WORK</a>
+                <a href="#contact" style="color:#fff;text-decoration:none;">CONTACT US</a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="width:100vw;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3vw 1.2rem 3vw;position:relative;">
+            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 ITRAM MANAGEMENT</div>
+            <div style="display:flex;align-items:center;gap:1.5rem;">
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#top" style="color:#111;background:#fff;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Modal -->
+    <div class="service-modal" id="serviceModal">
+        <div class="service-modal-content">
+            <span class="service-modal-close" onclick="closeServiceModal()">&times;</span>
+            <div class="service-modal-title" id="serviceModalTitle"></div>
+            <div class="service-modal-text" id="serviceModalText"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1 && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Service Card Modal Logic
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalText = document.getElementById('serviceModalText');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                serviceModalTitle.textContent = title;
+                serviceModalText.textContent = description;
+                serviceModal.style.display = 'flex';
+            });
+        });
+
+        function closeServiceModal() {
+            serviceModal.style.display = 'none';
+        }
+
+        window.addEventListener('click', e => {
+            if (e.target === serviceModal) closeServiceModal();
+        });
+    </script>
+</body>
+</html> 

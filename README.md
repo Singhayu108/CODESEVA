@@ -1,6 +1,6 @@
-# ITRAM MANAGEMENT - Website
+# CODESEVA - Website
 
-A professional website for ITRAM MANAGEMENT showcasing services, projects, and contact information.
+A professional website for CODESEVA showcasing services, projects, and contact information.
 
 ## Overview
 
@@ -80,4 +80,4 @@ For questions or support, contact info@trammanagement.com.
 
 ---
 
-© 2025 ITRAM MANAGEMENT. All rights reserved. 
+© 2025 CODESEVA. All rights reserved. 

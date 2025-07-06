@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - ITRAM MANAGEMENT</title>
+    <title>About Us - CODESEVA</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
@@ -26,51 +26,95 @@
 
         /* About Page Specific Styles */
         .about-hero {
-            min-height: 80vh;
+            min-height: 70vh;
             background: linear-gradient(135deg, #fff 0%, #b2cbea 100%);
             position: relative;
             overflow: hidden;
-            padding: 8rem 6vw;
+            padding: 6rem 6vw 4rem 6vw;
             display: flex;
             align-items: center;
+            justify-content: center;
+            gap: 4rem;
         }
-
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('images/pattern.svg') repeat;
-            opacity: 0.1;
-        }
-
         .about-hero-content {
-            max-width: 800px;
+            flex: 1 1 0;
+            max-width: 520px;
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-
         .about-hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: #111;
-            margin-bottom: 2rem;
+            margin-bottom: 1.2rem;
             line-height: 1.1;
         }
-
         .about-hero p {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: #333;
-            max-width: 600px;
-            margin-bottom: 3rem;
+            max-width: 480px;
+            margin-bottom: 0;
             line-height: 1.6;
+        }
+        .about-hero-image {
+            flex: 1 1 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            min-width: 0;
+        }
+        .about-hero-image img {
+            max-width: 380px;
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            box-shadow: none;
+            background: none;
+        }
+        @media (max-width: 992px) {
+            .about-hero {
+                flex-direction: column;
+                padding: 4rem 3vw 2rem 3vw;
+                gap: 2.5rem;
+            }
+            .about-hero-content {
+                max-width: 100%;
+                align-items: center;
+                text-align: center;
+            }
+            .about-hero-image img {
+                max-width: 320px;
+            }
+        }
+        @media (max-width: 600px) {
+            .about-hero {
+                padding: 2.5rem 1vw 1.5rem 1vw;
+                gap: 1.5rem;
+            }
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            .about-hero-image img {
+                max-width: 220px;
+            }
         }
 
         .about-section {
             padding: 6rem 6vw;
-            background: #fff;
+            background: linear-gradient(180deg, #eaf2fb 0%, #fff 100%);
+            position: relative;
+        }
+        .about-section-top-divider {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .about-content {
@@ -505,7 +549,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="logo"><img src="images/logo.png" alt="ITRAM MANAGEMENT Logo"></a>
+        <a href="index.html" class="logo"><img src="images/logo.png" alt="CODESEVA Logo"></a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About</a>
@@ -519,13 +563,20 @@
     <!-- Hero Section -->
     <section class="about-hero">
         <div class="about-hero-content">
-            <h1>Crafting Digital Excellence Since 2014</h1>
+            <h1>Excellence Since 2014</h1>
             <p>We're more than just a digital agency. We're your partners in transformation, bringing your vision to life through innovative technology and creative solutions.</p>
         </div>
         <div class="about-hero-image">
             <img src="images/aboutmm.png" alt="Animated Digital Excellence" class="animated-image">
         </div>
     </section>
+
+    <!-- Wavy SVG Divider -->
+    <div class="about-section-top-divider">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="60">
+            <path d="M0 30 Q 360 60 720 30 T 1440 30 V60 H0Z" fill="#eaf2fb" opacity="0.85"/>
+        </svg>
+    </div>
 
     <!-- Main About Section -->
     <section class="about-section">
@@ -682,7 +733,7 @@
             </div>
             <div style="font-size:4.5rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1.2rem;line-height:1.05;">ASK TO GET!</div>
             <div style="font-size:2.1rem;font-weight:500;margin-bottom:2.5rem;">
-                <a href="mailto:info@trammanagement.com" style="color:#fff;text-decoration:underline;">info@trammanagement.com</a>
+                <a href="mailto:info@codeseva.com" style="color:#fff;text-decoration:underline;">info@codeseva.com</a>
             </div>
             <div style="display:flex;justify-content:center;gap:2.5rem;font-size:1.1rem;font-weight:700;margin-bottom:0;">
                 <a href="index.html" style="color:#fff;text-decoration:none;">ABOUT</a>
@@ -692,7 +743,7 @@
             </div>
         </div>
         <div class="footer-bottom" style="width:100vw;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3vw 1.2rem 3vw;position:relative;">
-            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 ITRAM MANAGEMENT</div>
+            <div style="font-size:1rem;font-weight:600;letter-spacing:0.01em;opacity:0.8;">© 2024-25 CODESEVA</div>
             <div style="display:flex;align-items:center;gap:1.5rem;">
                 <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-twitter"></i></a>
                 <a href="#" style="color:#fff;font-size:1.5rem;"><i class="fab fa-instagram"></i></a>
@@ -759,7 +810,7 @@
                 name: 'John Smith',
                 position: 'CEO & Founder',
                 image: 'images/team 1.webp',
-                bio: 'John is a visionary leader with over 15 years of experience in the tech industry. He founded ITRAM MANAGEMENT with the goal of helping businesses transform their digital presence and achieve sustainable growth.',
+                bio: 'John is a visionary leader with over 15 years of experience in the tech industry. He founded CODESEVA with the goal of helping businesses transform their digital presence and achieve sustainable growth.',
                 experience: '15+ years',
                 expertise: 'Business Strategy, Technology Innovation',
                 education: 'MBA, Stanford University',

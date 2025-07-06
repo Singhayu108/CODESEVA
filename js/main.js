@@ -884,7 +884,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Mouse Circle + Dot Effect with dynamic color
 (function() {
-  if (window.innerWidth < 900) return;
+  // Removed screen width check to always enable the effect
+  // if (window.innerWidth < 900) return;
   const circle = document.createElement('div');
   circle.className = 'mouse-circle';
   const dot = document.createElement('div');
